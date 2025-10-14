@@ -1,0 +1,89 @@
+.signin-container{
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 100px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+
+}
+
+.welcome-text{
+    font-size: 32px;
+    line-height: 40px;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.text{
+    color: rgba(122, 114, 114, 0.8);
+    font-size: 18px;
+    line-height: 28px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.container{
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    padding: 40px;
+    border-radius: 10px;
+    color: #676767;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container form label{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 17px;
+    font-weight: 200;
+    color: black;
+    padding: 5px;
+}
+
+.container form input{
+    width: 100%;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: #333;
+
+    border-radius: 10px;
+    padding: 6px 12px;
+}
+
+.container form button{
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 30px; */
+
+    background-color: rgba(9, 83, 168, 0.836);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+.container form button:hover{
+    background-color: green;
+}
+
+.container img{
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+/* https://share.google/images/WoiN35VmtVX404UXF */
