@@ -12,16 +12,22 @@ const SignIn = () => {
     formState: { errors },
   } = useForm<formData>();
 
-  const onSubmit = (values: formData) => console.log(values);
+  const onSubmit = (values: formData) => {
+    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
+    existingUsers.push(values);
+    localStorage.setItem("users", JSON.stringify(existingUsers));
+    console.log(values);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      <h2 className="text-3xl font-semibold mb-2 text-center">
-        Welcome to TaskFlow
-      </h2>
-      <p className="text-gray-400 text-lg mb-6 text-center">
-        To get started, please sign in
-      </p>
       <div className="flex flex-col items-center bg-white p-8 rounded-xl shadow-leg w-full max-w-md">
+        <h2 className="text-3xl font-semibold mb-2 text-center">
+          Welcome to TaskFlow
+        </h2>
+        <p className="text-gray-400 text-lg mb-6 text-center">
+          To get started, please sign in
+        </p>
         <img
           src="/images/account.png"
           alt="profile"
@@ -42,7 +48,7 @@ const SignIn = () => {
                 message: "invalid email address",
               },
             })}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           {typeof errors.email?.message === "string" && (
             <span className="text-red-500 text-sm mb-2">
@@ -60,7 +66,7 @@ const SignIn = () => {
                 message: "invalid password",
               },
             })}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           {typeof errors.password?.message === "string" && (
             <span className="text-red-500 text-sm mb-2">
@@ -69,11 +75,16 @@ const SignIn = () => {
           )}
           <button
             type="submit"
-            className="bg-green-600 text-white py-2 rounded-lg cursor-pointer transition-colors font-medium mt-4"
+            className="bg-green-700 text-white py-2 rounded-lg cursor-pointer transition-colors font-medium mt-4"
           >
             Sign in
           </button>
-          <p className="mt-4 ml-3 text-gray-700 font-medium">New User? <Link to='/register' className="text-blue-600 cursor-pointer">Register Here</Link></p>
+          <p className="mt-4 ml-3 text-gray-700 font-medium">
+            New User?{" "}
+            <Link to="/register" className="text-blue-600 cursor-pointer">
+              Register Here
+            </Link>
+          </p>
         </form>
       </div>
     </div>
