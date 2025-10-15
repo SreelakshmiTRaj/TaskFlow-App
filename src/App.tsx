@@ -8,11 +8,13 @@ import AddTask from "./pages/Dashboard/AddTask";
 import PendingTasks from "./pages/Dashboard/PendingTasks";
 import CompletedTasks from "./pages/Dashboard/CompletedTasks";
 import Analytics from "./pages/Dashboard/Analytics";
+import Home from "./pages/Home/Home";
 const App = () => {
   return (
     <BrowserRouter>
       {/* <Navbar/> */}
       <Routes>
+        <Route path='/' element={<Home />}/>
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard/>}/>

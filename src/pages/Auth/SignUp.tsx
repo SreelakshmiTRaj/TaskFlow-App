@@ -12,8 +12,9 @@ const SignUp = () => {
   };
 
   type formData = {
-    name: string;
     role: string;
+    name: string;
+    jobTitle: string;
     email: string;
     password: string;
   };
@@ -57,22 +58,6 @@ const SignUp = () => {
             alt="profile"
             className="w-24 h-24 mb-6"
           />
-          <label className="mb-1 text-gray-700 font-medium mr-37">Name</label>
-          <input
-            type="text"
-            {...register("name", {
-              required: "required",
-              pattern: {
-                value: /^[A-za-z0-9 ]{3,}$/,
-                message: "invalid",
-              },
-            })}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-          {typeof errors.name?.message === "string" && (
-            <span className="error">{errors?.name?.message}</span>
-          )}
-
           <label className="mb-1 text-gray-700 font-medium mr-39">Role</label>
           <div className="flex justify-between w-full mb-3">
             <button
@@ -82,7 +67,7 @@ const SignUp = () => {
                   ? "bg-green-700 text-white"
                   : "bg-gray-200 text-gray-700 hover:bg-gray-300"
               }`}
-              onClick={() => setRole}
+              onClick={() => setRole("manager")}
             >
               Manager
             </button>
@@ -99,6 +84,38 @@ const SignUp = () => {
               Employee
             </button>
           </div>
+
+          <label className="mb-1 text-gray-700 font-medium mr-37">Name</label>
+          <input
+            type="text"
+            {...register("name", {
+              required: "required",
+              pattern: {
+                value: /^[A-za-z0-9 ]{3,}$/,
+                message: "invalid",
+              },
+            })}
+            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          {typeof errors.name?.message === "string" && (
+            <span className="error">{errors?.name?.message}</span>
+          )}
+
+          <label className="mb-1 text-gray-700 font-medium mr-35">Job Title</label>
+          <input
+            type="text"
+            {...register("jobTitle", {
+              required: "required",
+              pattern: {
+                value: /^[A-Za-z ]{3,}$/,
+                message: "invalid",
+              },
+            })}
+            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          {typeof errors.jobTitle?.message === "string" && (
+            <span className="error">{errors?.jobTitle?.message}</span>
+          )}
 
           <label className="mb-1 text-gray-700 font-medium mr-37">Email</label>
           <input
