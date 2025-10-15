@@ -3,6 +3,11 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AddTask from "./pages/Dashboard/AddTask";
+import PendingTasks from "./pages/Dashboard/PendingTasks";
+import CompletedTasks from "./pages/Dashboard/CompletedTasks";
+import Analytics from "./pages/Dashboard/Analytics";
 const App = () => {
   return (
     <BrowserRouter>
@@ -10,6 +15,11 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
+        <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/dashboard/add-task" element={<AddTask/>}/>
+        <Route path="/dashboard/pending-tasks" element={<PendingTasks/>}/>
+        <Route path="/dashboard/completed-tasks" element={<CompletedTasks/>}/>
+        <Route path="/dashboard/analytics" element={<Analytics/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,7 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const SignIn = () => {
+  const navigate = useNavigate();
+
   type formData = {
     email: string;
     password: string;
@@ -13,15 +15,16 @@ const SignIn = () => {
   } = useForm<formData>();
 
   const onSubmit = (values: formData) => {
-    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    existingUsers.push(values);
-    localStorage.setItem("users", JSON.stringify(existingUsers));
     console.log(values);
+  };
+
+  const handleSignIn = () => {
+    navigate('/dashboard')
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="flex flex-col items-center bg-white p-8 rounded-xl shadow-leg w-full max-w-md">
+      <div className="flex flex-col items-center bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-semibold mb-2 text-center">
           Welcome to TaskFlow
         </h2>
@@ -48,7 +51,7 @@ const SignIn = () => {
                 message: "invalid email address",
               },
             })}
-            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           {typeof errors.email?.message === "string" && (
             <span className="text-red-500 text-sm mb-2">
@@ -66,16 +69,17 @@ const SignIn = () => {
                 message: "invalid password",
               },
             })}
-            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           {typeof errors.password?.message === "string" && (
             <span className="text-red-500 text-sm mb-2">
-              {errors.password.message}
+              {errors?.password?.message}
             </span>
           )}
           <button
             type="submit"
             className="bg-green-700 text-white py-2 rounded-lg cursor-pointer transition-colors font-medium mt-4"
+            onClick={handleSignIn}
           >
             Sign in
           </button>
