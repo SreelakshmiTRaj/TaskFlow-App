@@ -1,9 +1,11 @@
-import React from 'react'
+import Sidebar from "../../components/Layout/Sidebar";
 
 const Analytics = () => {
   return (
-    <div>Analytics</div>
-  )
-}
+    <div>
+      <Sidebar />
+    </div>
+  );
+};
 
-export default Analytics
+export default Analytics;

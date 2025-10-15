@@ -1,10 +1,8 @@
-import React from "react";
 import {
   ClipboardPlus,
   Clock,
   CheckCircle,
   BarChart3,
-  User,
   LogOut,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -19,17 +17,8 @@ const Sidebar = () => {
     <div className="h-screen w-64 flex flex-col justify-between text-white bg-blue-900 shadow-lg">
       <div>
         <div className="p-5 border-b border-white/30 flex items-center justify-center gap-2">
-          <img src="/images/note.png" alt="logo" className="w-8 h-8"/>
+          <img src="/images/note.png" alt="logo" className="w-8 h-8" />
           <h1 className="text-2xl font-semibold text-center">Taskflow</h1>
-        </div>
-
-        <div className="p-4 border-b border-white/30">
-          <div className="flex items-center gap-3">
-            <div className="bg-gray-400 p-2 rounded-full">
-              <User size={20} />
-            </div>
-            <span className="text-sm font-medium">User Name</span>
-          </div>
         </div>
 
         <nav className="mt-2 flex flex-col gap-1">
@@ -48,7 +37,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard/pending-task"
+            to="/dashboard/pending-tasks"
             className={({ isActive }) =>
               `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
                 isActive
@@ -62,7 +51,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard/completed-task"
+            to="/dashboard/completed-tasks"
             className={({ isActive }) =>
               `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
                 isActive

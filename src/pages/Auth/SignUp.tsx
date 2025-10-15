@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -101,7 +101,9 @@ const SignUp = () => {
             <span className="error">{errors?.name?.message}</span>
           )}
 
-          <label className="mb-1 text-gray-700 font-medium mr-35">Job Title</label>
+          <label className="mb-1 text-gray-700 font-medium mr-35">
+            Job Title
+          </label>
           <input
             type="text"
             {...register("jobTitle", {

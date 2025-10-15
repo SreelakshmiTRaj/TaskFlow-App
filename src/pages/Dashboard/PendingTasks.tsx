@@ -1,8 +1,10 @@
-import React from 'react'
+import Sidebar from '../../components/Layout/Sidebar'
 
 const PendingTasks = () => {
   return (
-    <div>PendingTasks</div>
+    <div>
+      <Sidebar/>
+    </div>
   )
 }
 

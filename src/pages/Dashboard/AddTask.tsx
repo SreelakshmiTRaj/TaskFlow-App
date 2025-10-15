@@ -1,9 +1,11 @@
-import React from 'react'
+import Sidebar from "../../components/Layout/Sidebar";
 
 const AddTask = () => {
   return (
-    <div>AddTask</div>
-  )
-}
+    <div>
+      <Sidebar />
+    </div>
+  );
+};
 
-export default AddTask
+export default AddTask;

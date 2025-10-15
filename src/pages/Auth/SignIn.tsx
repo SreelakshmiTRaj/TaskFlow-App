@@ -19,7 +19,7 @@ const SignIn = () => {
   };
 
   const handleSignIn = () => {
-    navigate('/dashboard')
+    navigate("/dashboard");
   };
 
   return (

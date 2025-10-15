@@ -1,9 +1,11 @@
-import React from 'react'
+import Sidebar from "../../components/Layout/Sidebar";
 
 const CompletedTasks = () => {
   return (
-    <div>CompletedTasks</div>
-  )
-}
+    <div>
+      <Sidebar />
+    </div>
+  );
+};
 
-export default CompletedTasks
+export default CompletedTasks;
