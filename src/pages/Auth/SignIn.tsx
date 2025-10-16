@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   email: yup
@@ -16,6 +17,7 @@ const schema = yup.object().shape({
 
 const SignIn = () => {
   const navigate = useNavigate();
+  const [error,setError] = useState("");
 
   type formData = {
     email: string;
@@ -31,8 +33,21 @@ const SignIn = () => {
   });
 
   const onSubmit = (values: formData) => {
-    console.log(values);
-    navigate("/dashboard");
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+    const user = users.find(
+      (u: { email: string; password: string; }) => u.email === values.email && u.password === values.password
+    );
+
+    if(!user){
+      setError("Invalid email or password");
+      return;
+    }
+
+    if(user.role === "manager"){
+      navigate("/manager-dashboard");
+    }else{
+      navigate("/dashboard")
+    }
   };
 
   return (
@@ -76,6 +91,10 @@ const SignIn = () => {
             <span className="text-red-500 text-sm mb-2">
               {errors?.password?.message}
             </span>
+          )}
+
+          {error && ( 
+            <p className="text-red-600 text-sm mb-2">{error}</p>
           )}
 
           <button

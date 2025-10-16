@@ -1,11 +1,14 @@
 import {
   ClipboardPlus,
+  Clock,
+  CheckCircle,
   BarChart3,
   LogOut,
+  FolderPlus,
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+const ManagerSidebar = () => {
   const navigate = useNavigate();
   const handleLogOut = () => {
     navigate("/");
@@ -21,6 +24,19 @@ const Sidebar = () => {
 
         <nav className="mt-2 flex flex-col gap-1">
           <NavLink
+            to="/dashboard/add-project"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
+                isActive
+                  ? "bg-blue-700 text-white"
+                  : "text-blue-100 hover:bg-blue-800 hover:text-white"
+              }`
+            }
+          >
+            <FolderPlus size={20} />
+            Add Project
+          </NavLink>
+          <NavLink
             to="/dashboard/add-task"
             className={({ isActive }) =>
               `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
@@ -33,6 +49,35 @@ const Sidebar = () => {
             <ClipboardPlus size={20} />
             Add Task
           </NavLink>
+
+          <NavLink
+            to="/dashboard/pending-tasks"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
+                isActive
+                  ? "bg-blue-700 text-white"
+                  : "text-blue-100 hover:bg-blue-800 hover:text-white"
+              }`
+            }
+          >
+            <Clock size={20} />
+            Pending Tasks
+          </NavLink>
+
+          <NavLink
+            to="/dashboard/completed-tasks"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
+                isActive
+                  ? "bg-blue-700 text-white"
+                  : "text-blue-100 hover:bg-blue-800 hover:text-white"
+              }`
+            }
+          >
+            <CheckCircle size={20} />
+            Completed Tasks
+          </NavLink>
+
           <NavLink
             to="/dashboard/analytics"
             className={({ isActive }) =>
@@ -60,4 +105,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default ManagerSidebar;

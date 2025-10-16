@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Select from "react-select";
+import { v4 as uuid } from "uuid";
 import roles from "../../assets/roles.ts";
 const SignUp = () => {
   const navigate = useNavigate();
@@ -39,7 +40,6 @@ const SignUp = () => {
 
   const onSubmit = (values: formData) => {
     setMessage("");
-    setJobError("");
 
     if (!role) {
       setMessage("Please select a role");
@@ -61,13 +61,11 @@ const SignUp = () => {
       return;
     }
 
-    const newUser = { ...values, jobTitle: selectedJob, role };
+    const newUser = { id: uuid(),...values, jobTitle: selectedJob, role };
     existingUsers.push(newUser);
     localStorage.setItem("users", JSON.stringify(existingUsers));
     navigate("/login");
   };
-
-  const options = roles;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
@@ -119,7 +117,20 @@ const SignUp = () => {
           )}
 
           <label className="mb-1 text-gray-700 font-medium">Job Title</label>
-          <Select options={options} isSearchable placeholder="Select a job title" className="mb-2" onChange={(option) => setSelectedJob(option ? option.value : "")}/>
+          <Select 
+            options={roles} 
+            isSearchable 
+            placeholder="Select a job title" 
+            className="mb-2" 
+            onChange={(option) => {
+              if(option) {
+                setSelectedJob(option.value);
+                setJobError("");
+              }else{
+                setSelectedJob("");
+              }
+            }}
+            />
           {jobError && 
             <span className="text-red-400">{jobError}</span>
           }

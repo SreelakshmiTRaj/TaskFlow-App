@@ -9,6 +9,8 @@ import PendingTasks from "./pages/Dashboard/PendingTasks";
 import CompletedTasks from "./pages/Dashboard/CompletedTasks";
 import Analytics from "./pages/Dashboard/Analytics";
 import Home from "./pages/Home/Home";
+import ManagerDashboard from "./pages/ManagerDashboard/ManagerDashboard";
+import AddProject from "./pages/ManagerDashboard/AddProject";
 const App = () => {
   return (
     <BrowserRouter>
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/manager-dashboard" element={<ManagerDashboard/>}/>
+        <Route path="/dashboard/add-project" element={<AddProject/>}/>
         <Route path="/dashboard/add-task" element={<AddTask/>}/>
         <Route path="/dashboard/pending-tasks" element={<PendingTasks/>}/>
         <Route path="/dashboard/completed-tasks" element={<CompletedTasks/>}/>
