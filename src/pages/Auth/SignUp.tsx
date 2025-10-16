@@ -1,40 +1,54 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 const SignUp = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [role, setRole] = useState<"manager" | "employee" | "">("");
 
-  const handleRegister = () => {
-    navigate("/login");
-  };
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .required("Name is required")
+      .matches(/^[A-za-z0-9 ]{3,}$/, "Invalid name"),
+    jobTitle: yup
+      .string()
+      .required("Job title is required")
+      .matches(/^[A-Za-z ]{3,}$/, "Invalid job title"),
+    email: yup
+      .string()
+      .required("Email is required")
+      .email("Invalid email address"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .matches(/^[A-Za-z][A-Za-z0-9@$%]{8,}$/, "Invalid password"),
+  });
 
-  type formData = {
-    role: string;
-    name: string;
-    jobTitle: string;
-    email: string;
-    password: string;
-  };
+  type formData = yup.InferType<typeof schema>;
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<formData>();
+  } = useForm<formData>({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (values: formData) => {
     if (!role) {
       setMessage("Please select a role");
+      return;
     }
+
     const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    const name = existingUsers.find(
+    const existingUser = existingUsers.find(
       (user: formData) => user.email === values.email
     );
 
-    if (name) {
+    if (existingUser) {
       setMessage("Email already exists");
       return;
     }
@@ -42,125 +56,93 @@ const SignUp = () => {
     const newUser = { ...values, role };
     existingUsers.push(newUser);
     localStorage.setItem("users", JSON.stringify(existingUsers));
-    console.log(values);
+    navigate("/login");
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="flex flex-col items-center justify-center bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
+      <div className="flex flex-col items-center justify-center bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
+        <h2 className="text-2xl font-semibold mb-1 text-center">Sign up</h2>
+        <img
+          src="/images/account.png"
+          alt="profile"
+          className="w-20 h-20 mb-3"
+        />
+
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col justify-center items-center"
+          className="flex flex-col w-full text-md"
         >
-          <h2 className="text-3xl font-semibold mb-2 text-center">Sign up</h2>
-          <img
-            src="/images/account.png"
-            alt="profile"
-            className="w-24 h-24 mb-6"
-          />
-          <label className="mb-1 text-gray-700 font-medium mr-39">Role</label>
-          <div className="flex justify-between w-full mb-3">
-            <button
-              type="button"
-              className={`flex-1 py-2 mx-1 rounded-lg font-medium transition-colors ${
-                role === "manager"
-                  ? "bg-green-700 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-              onClick={() => setRole("manager")}
-            >
-              Manager
-            </button>
+          <label className="mb-1 text-gray-700 font-medium">Role</label>
+          <div className="flex items-center justify-around w-full mb-3">
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                value="manager"
+                checked={role === "manager"}
+                onChange={() => setRole("manager")}
+                className="w-4 h-4 text-green-700 accent-green-700"
+              />
+              <span className="text-gray-700">Manager</span>
+            </label>
 
-            <button
-              type="button"
-              className={`flex-1 py-2 mx-1 rounded-lg font-medium transition-colors ${
-                role === "employee"
-                  ? "bg-green-700 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-              onClick={() => setRole("employee")}
-            >
-              Employee
-            </button>
+            <label className="flex items-center space-x-2">
+              <input
+                type="checkbox"
+                value="employee"
+                checked={role === "employee"}
+                onChange={() => setRole("employee")}
+                className="w-4 h-4 text-green-700 accent-green-700"
+              />
+              <span className="text-gray-700">Employee</span>
+            </label>
           </div>
 
-          <label className="mb-1 text-gray-700 font-medium mr-37">Name</label>
+          <label className="mb-1 text-gray-700 font-medium">Name</label>
           <input
             type="text"
-            {...register("name", {
-              required: "required",
-              pattern: {
-                value: /^[A-za-z0-9 ]{3,}$/,
-                message: "invalid",
-              },
-            })}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            {...register("name")}
+            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {typeof errors.name?.message === "string" && (
-            <span className="error">{errors?.name?.message}</span>
+          {errors.name && (
+            <span className="text-red-400">{errors?.name?.message}</span>
           )}
 
-          <label className="mb-1 text-gray-700 font-medium mr-35">
-            Job Title
-          </label>
+          <label className="mb-1 text-gray-700 font-medium">Job Title</label>
           <input
             type="text"
-            {...register("jobTitle", {
-              required: "required",
-              pattern: {
-                value: /^[A-Za-z ]{3,}$/,
-                message: "invalid",
-              },
-            })}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            {...register("jobTitle")}
+            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {typeof errors.jobTitle?.message === "string" && (
-            <span className="error">{errors?.jobTitle?.message}</span>
+          {errors.jobTitle && (
+            <span className="text-red-400">{errors?.jobTitle?.message}</span>
           )}
 
-          <label className="mb-1 text-gray-700 font-medium mr-37">Email</label>
+          <label className="mb-1 text-gray-700 font-medium">Email</label>
           <input
             type="email"
-            {...register("email", {
-              required: "Required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "invalid email address",
-              },
-            })}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            {...register("email")}
+            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {typeof errors.email?.message === "string" && (
-            <span className="error">{errors?.email?.message}</span>
+          {errors.email && (
+            <span className="text-red-400">{errors?.email?.message}</span>
           )}
 
-          <label className="mb-1 text-gray-700 font-medium mr-30">
-            Password
-          </label>
+          <label className="mb-1 text-gray-700 font-medium">Password</label>
           <input
             type="password"
-            {...register("password", {
-              required: "Required",
-              pattern: {
-                value: /^[A-Za-z][A-Za-z0-9@$%]{8,}$/,
-                message: "invalid password",
-              },
-            })}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            {...register("password")}
+            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {typeof errors.password?.message === "string" && (
-            <span className="error">{errors?.password?.message}</span>
+          {errors.password && (
+            <span className="text-red-400">{errors?.password?.message}</span>
           )}
 
-          {message ? (
-            <p className="mt-4 text-sm text-green-700">{message}</p>
-          ) : null}
+          {message && <p className="mt-4 text-sm text-green-700">{message}</p>}
 
           <button
             type="submit"
             className="w-50 bg-green-700 text-white py-2 px-3 rounded-lg cursor-pointer transition-colors font-medium mt-5"
-            onClick={handleRegister}
           >
             Sign up
           </button>

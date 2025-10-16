@@ -1,6 +1,19 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .matches(/^[A-Za-z][A-Za-z0-9@$%]{8,}$/, "Invalid password")
+    .required("Password is required"),
+});
+
 const SignIn = () => {
   const navigate = useNavigate();
 
@@ -8,17 +21,17 @@ const SignIn = () => {
     email: string;
     password: string;
   };
+
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<formData>();
+  } = useForm<formData>({
+    resolver: yupResolver(schema),
+  });
 
   const onSubmit = (values: formData) => {
     console.log(values);
-  };
-
-  const handleSignIn = () => {
     navigate("/dashboard");
   };
 
@@ -44,16 +57,10 @@ const SignIn = () => {
           <label className="mb-1 text-gray-700 font-medium">Email</label>
           <input
             type="email"
-            {...register("email", {
-              required: "Required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "invalid email address",
-              },
-            })}
+            {...register("email")}
             className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {typeof errors.email?.message === "string" && (
+          {errors.email && (
             <span className="text-red-500 text-sm mb-2">
               {errors?.email?.message}
             </span>
@@ -62,27 +69,22 @@ const SignIn = () => {
           <label className="mb-1 text-gray-700 font-medium">Password</label>
           <input
             type="password"
-            {...register("password", {
-              required: "Required",
-              pattern: {
-                value: /^[A-Za-z][A-Za-z0-9@$%]{8,}$/,
-                message: "invalid password",
-              },
-            })}
+            {...register("password")}
             className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {typeof errors.password?.message === "string" && (
+          {errors.password && (
             <span className="text-red-500 text-sm mb-2">
               {errors?.password?.message}
             </span>
           )}
+
           <button
             type="submit"
             className="bg-green-700 text-white py-2 rounded-lg cursor-pointer transition-colors font-medium mt-4"
-            onClick={handleSignIn}
           >
             Sign in
           </button>
+
           <p className="mt-4 ml-3 text-gray-700 font-medium">
             New User?{" "}
             <Link to="/register" className="text-blue-600 cursor-pointer">
