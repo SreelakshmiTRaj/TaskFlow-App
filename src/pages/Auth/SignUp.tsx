@@ -74,7 +74,7 @@ const SignUp = () => {
           className="flex flex-col w-full text-md"
         >
           <label className="mb-1 text-gray-700 font-medium">Role</label>
-          <div className="flex items-center justify-around w-full mb-3">
+          <div className="flex items-center gap-6 w-full mb-3">
             <label className="flex items-center space-x-2">
               <input
                 type="checkbox"
@@ -142,7 +142,7 @@ const SignUp = () => {
 
           <button
             type="submit"
-            className="w-50 bg-green-700 text-white py-2 px-3 rounded-lg cursor-pointer transition-colors font-medium mt-5"
+            className="mx-auto w-50 bg-green-700 text-white py-2 px-3 rounded-lg cursor-pointer transition-colors font-medium mt-5"
           >
             Sign up
           </button>
