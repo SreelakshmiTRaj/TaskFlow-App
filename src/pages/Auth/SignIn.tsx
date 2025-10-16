@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import axios from "axios";
 
 const schema = yup.object().shape({
   email: yup
@@ -17,7 +18,7 @@ const schema = yup.object().shape({
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [error,setError] = useState("");
+  const [error, setError] = useState("");
 
   type formData = {
     email: string;
@@ -32,21 +33,28 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: formData) => {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = users.find(
-      (u: { email: string; password: string; }) => u.email === values.email && u.password === values.password
-    );
+  const onSubmit = async (values: formData) => {
+    try {
+      const { data: users } = await axios.get("http://localhost:5000/users");
+      const user = users.find(
+        (u: { email: string; password: string }) =>
+          u.email === values.email && u.password === values.password
+      );
+      if (!user) {
+        setError("Invalid email or password");
+        return;
+      }
 
-    if(!user){
-      setError("Invalid email or password");
-      return;
-    }
+      localStorage.setItem("jobTitle",user.jobTitle);
+      localStorage.setItem("name",user.name);
 
-    if(user.role === "manager"){
-      navigate("/manager-dashboard");
-    }else{
-      navigate("/dashboard")
+      if (user.role === "manager") {
+        navigate("/manager-dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.log("Login error: ",error);
     }
   };
 
@@ -93,9 +101,7 @@ const SignIn = () => {
             </span>
           )}
 
-          {error && ( 
-            <p className="text-red-600 text-sm mb-2">{error}</p>
-          )}
+          {error && <p className="text-red-600 text-sm mb-2">{error}</p>}
 
           <button
             type="submit"

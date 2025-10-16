@@ -1,0 +1,30 @@
+{
+  "users": [
+    {
+      "id": "b00e7453-1f58-403a-b2ad-98418658abac",
+      "name": "Susan",
+      "email": "susan@example.com",
+      "password": "Susan@12345",
+      "jobTitle": "ai-engineer",
+      "role": "manager"
+    },
+    {
+      "id": "c51f95aa-6357-412c-bf38-631c6f3e3ca7",
+      "name": "Lewis",
+      "email": "lewis@example.com",
+      "password": "Lewis@7890",
+      "jobTitle": "business-analyst",
+      "role": "employee"
+    },
+    {
+      "id": "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f",
+      "name": "Sam",
+      "email": "sam@example.com",
+      "password": "Sam@12345",
+      "jobTitle": "research-analyst",
+      "role": "employee"
+    }
+  ],
+  "projects": [],
+  "tasks": []
+}

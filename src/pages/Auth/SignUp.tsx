@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Select from "react-select";
 import { v4 as uuid } from "uuid";
 import roles from "../../assets/roles.ts";
+import axios from "axios";
 const SignUp = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
@@ -38,7 +39,7 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values: formData) => {
+  const onSubmit = async (values: formData) => {
     setMessage("");
 
     if (!role) {
@@ -51,20 +52,23 @@ const SignUp = () => {
       return;
     }
 
-    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    const existingUser = existingUsers.find(
-      (user: formData) => user.email === values.email
-    );
+    try{
+      const { data: users } =  await axios.get("http://localhost:5000/users");
+      const existingUser = users.find(
+        ((user: formData) => user.email === values.email)
+      );
+      if(existingUser){
+        setMessage("Email already exists");
+        return;
+      }
 
-    if (existingUser) {
-      setMessage("Email already exists");
-      return;
+      const newUser = { id: uuid(),...values, jobTitle: selectedJob, role };
+      await axios.post("http://localhost:5000/users",newUser);
+      navigate('/login');
+    }catch(error){
+      console.log("Error during singup: ",error);
     }
-
-    const newUser = { id: uuid(),...values, jobTitle: selectedJob, role };
-    existingUsers.push(newUser);
-    localStorage.setItem("users", JSON.stringify(existingUsers));
-    navigate("/login");
+    
   };
 
   return (
