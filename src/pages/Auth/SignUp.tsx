@@ -3,20 +3,20 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Select from "react-select";
+import roles from "../../assets/roles.ts";
 const SignUp = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [role, setRole] = useState<"manager" | "employee" | "">("");
+  const [selectedJob,setSelectedJob] = useState<string>("");
+  const [jobError,setJobError] = useState("");
 
   const schema = yup.object().shape({
     name: yup
       .string()
       .required("Name is required")
       .matches(/^[A-za-z0-9 ]{3,}$/, "Invalid name"),
-    jobTitle: yup
-      .string()
-      .required("Job title is required")
-      .matches(/^[A-Za-z ]{3,}$/, "Invalid job title"),
     email: yup
       .string()
       .required("Email is required")
@@ -38,8 +38,16 @@ const SignUp = () => {
   });
 
   const onSubmit = (values: formData) => {
+    setMessage("");
+    setJobError("");
+
     if (!role) {
       setMessage("Please select a role");
+      return;
+    }
+
+    if (!selectedJob) {
+      setJobError("Please select a job title");
       return;
     }
 
@@ -53,11 +61,13 @@ const SignUp = () => {
       return;
     }
 
-    const newUser = { ...values, role };
+    const newUser = { ...values, jobTitle: selectedJob, role };
     existingUsers.push(newUser);
     localStorage.setItem("users", JSON.stringify(existingUsers));
     navigate("/login");
   };
+
+  const options = roles;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
@@ -73,7 +83,7 @@ const SignUp = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col w-full text-md"
         >
-          <label className="mb-1 text-gray-700 font-medium">Role</label>
+          <label className="mb-1 text-gray-700 font-medium mt-2">Role</label>
           <div className="flex items-center gap-6 w-full mb-3">
             <label className="flex items-center space-x-2">
               <input
@@ -104,19 +114,15 @@ const SignUp = () => {
             {...register("name")}
             className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
-          {errors.name && (
+          {errors?.name && (
             <span className="text-red-400">{errors?.name?.message}</span>
           )}
 
           <label className="mb-1 text-gray-700 font-medium">Job Title</label>
-          <input
-            type="text"
-            {...register("jobTitle")}
-            className="mb-2 p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-          {errors.jobTitle && (
-            <span className="text-red-400">{errors?.jobTitle?.message}</span>
-          )}
+          <Select options={options} isSearchable placeholder="Select a job title" className="mb-2" onChange={(option) => setSelectedJob(option ? option.value : "")}/>
+          {jobError && 
+            <span className="text-red-400">{jobError}</span>
+          }
 
           <label className="mb-1 text-gray-700 font-medium">Email</label>
           <input
