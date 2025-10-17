@@ -37,46 +37,84 @@
     {
       "id": "p1",
       "name": "AI Research Dashboard",
-      "members": [
-        "b00e7453-1f58-403a-b2ad-98418658abac",
-        "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
-      ],
+      "members": ["b00e7453-1f58-403a-b2ad-98418658abac", "c51f95aa-6357-412c-bf38-631c6f3e3ca7"],
       "tasks": [
-        {
-          "id": "t1",
-          "title": "Collect data",
-          "status": "completed"
-        },
-        {
-          "id": "t2",
-          "title": "Train model",
-          "status": "in-progress"
-        },
-        {
-          "id": "t3",
-          "title": "Write report",
-          "status": "pending"
-        }
+        { "id": "t1", "title": "Collect data", "status": "completed" },
+        { "id": "t2", "title": "Train model", "status": "in-progress" },
+        { "id": "t3", "title": "Write report", "status": "pending" }
       ]
     },
     {
       "id": "p2",
       "name": "Business Insights Portal",
-      "members": [
-        "c51f95aa-6357-412c-bf38-631c6f3e3ca7",
-        "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"
-      ],
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7", "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"],
       "tasks": [
-        {
-          "id": "t4",
-          "title": "Gather KPIs",
-          "status": "completed"
-        },
-        {
-          "id": "t5",
-          "title": "Design dashboard",
-          "status": "pending"
-        }
+        { "id": "t4", "title": "Gather KPIs", "status": "completed" },
+        { "id": "t5", "title": "Design dashboard", "status": "pending" }
+      ]
+    },
+    {
+      "id": "p3",
+      "name": "Employee Performance Tracker",
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7", "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"],
+      "tasks": [
+        { "id": "t6", "title": "Define performance metrics", "status": "completed" },
+        { "id": "t7", "title": "Develop evaluation form UI", "status": "in-progress" },
+        { "id": "t8", "title": "Integrate feedback API", "status": "pending" }
+      ]
+    },
+    {
+      "id": "p4",
+      "name": "Customer Engagement Platform",
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7", "b00e7453-1f58-403a-b2ad-98418658abac"],
+      "tasks": [
+        { "id": "t9", "title": "Set up user segmentation", "status": "completed" },
+        { "id": "t10", "title": "Integrate messaging API", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "p5",
+      "name": "Sales Forecast Tool",
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7", "cd675e08-f33e-4240-a7aa-a7ef06edffb5"],
+      "tasks": [
+        { "id": "t11", "title": "Build regression model", "status": "pending" },
+        { "id": "t12", "title": "Collect sales data", "status": "completed" }
+      ]
+    },
+    {
+      "id": "p6",
+      "name": "Marketing Analytics Suite",
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7", "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"],
+      "tasks": [
+        { "id": "t13", "title": "Gather marketing data", "status": "in-progress" },
+        { "id": "t14", "title": "Create visualizations", "status": "pending" }
+      ]
+    },
+    {
+      "id": "p7",
+      "name": "Internal Knowledge Hub",
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7"],
+      "tasks": [
+        { "id": "t15", "title": "Organize documentation", "status": "completed" },
+        { "id": "t16", "title": "Add search functionality", "status": "in-progress" }
+      ]
+    },
+    {
+      "id": "p8",
+      "name": "Recruitment Management System",
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7", "b00e7453-1f58-403a-b2ad-98418658abac"],
+      "tasks": [
+        { "id": "t17", "title": "Set up job posting module", "status": "pending" },
+        { "id": "t18", "title": "Integrate interview scheduling", "status": "completed" }
+      ]
+    },
+    {
+      "id": "p9",
+      "name": "Inventory Monitoring System",
+      "members": ["c51f95aa-6357-412c-bf38-631c6f3e3ca7", "cd675e08-f33e-4240-a7aa-a7ef06edffb5"],
+      "tasks": [
+        { "id": "t19", "title": "Add barcode scanning", "status": "in-progress" },
+        { "id": "t20", "title": "Setup alert thresholds", "status": "pending" }
       ]
     }
   ],
