@@ -9,10 +9,10 @@ import Home from "./pages/Home/Home";
 import ManagerDashboard from "./pages/ManagerDashboard/ManagerDashboard";
 import AddProject from "./pages/ManagerDashboard/AddProject";
 import Taskboard from "./pages/Dashboard/Taskboard";
+import ProjectsPage from "./pages/Dashboard/ProjectsPage";
 const App = () => {
   return (
     <BrowserRouter>
-      {/* <Navbar/> */}
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path="/login" element={<SignIn />} />
@@ -22,6 +22,7 @@ const App = () => {
         <Route path="/dashboard/add-project" element={<AddProject/>}/>
         <Route path="/dashboard/add-task" element={<AddTask/>}/>
         <Route path="/dashboard/taskboard" element={<Taskboard/>}/>
+        <Route path='/projects/:id' element={<ProjectsPage />} />
         <Route path="/dashboard/analytics" element={<Analytics/>}/>
       </Routes>
     </BrowserRouter>

@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Sidebar from "../../components/Layout/Sidebar";
 import axios from "axios";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface Task {
   id: string;
   title: string;
   status: "pending" | "in-progress" | "completed";
+  assignedTo: string;
 }
 
 interface Project {
@@ -20,6 +22,7 @@ const Taskboard = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -86,6 +89,7 @@ const Taskboard = () => {
                 return (
                   <div
                     key={project.id}
+                    onClick={() => navigate(`/projects/${project.id}`)}
                     className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer shadow-lg hover:translate-y-0.5 transition-all"
                   >
                     <h2 className="text-lg font-semibold text-blue-900 mb-2">

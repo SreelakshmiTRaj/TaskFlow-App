@@ -53,17 +53,20 @@
         {
           "id": "t1",
           "title": "Collect data",
-          "status": "completed"
+          "status": "completed",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         },
         {
           "id": "t2",
           "title": "Train model",
-          "status": "in-progress"
+          "status": "in-progress",
+          "assignedTo": "b00e7453-1f58-403a-b2ad-98418658abac"
         },
         {
           "id": "t3",
           "title": "Write report",
-          "status": "pending"
+          "status": "in-progress",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
     },
@@ -78,12 +81,14 @@
         {
           "id": "t4",
           "title": "Gather KPIs",
-          "status": "completed"
+          "status": "completed",
+          "assignedTo": "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"
         },
         {
           "id": "t5",
           "title": "Design dashboard",
-          "status": "pending"
+          "status": "pending",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
     },
@@ -98,17 +103,20 @@
         {
           "id": "t6",
           "title": "Define performance metrics",
-          "status": "completed"
+          "status": "completed",
+          "assignedTo": "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"
         },
         {
           "id": "t7",
           "title": "Develop evaluation form UI",
-          "status": "in-progress"
+          "status": "in-progress",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         },
         {
           "id": "t8",
           "title": "Integrate feedback API",
-          "status": "pending"
+          "status": "pending",
+          "assignedTo": "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"
         }
       ]
     },
@@ -123,12 +131,14 @@
         {
           "id": "t9",
           "title": "Set up user segmentation",
-          "status": "completed"
+          "status": "completed",
+          "assignedTo": "b00e7453-1f58-403a-b2ad-98418658abac"
         },
         {
           "id": "t10",
           "title": "Integrate messaging API",
-          "status": "in-progress"
+          "status": "in-progress",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
     },
@@ -143,12 +153,14 @@
         {
           "id": "t11",
           "title": "Build regression model",
-          "status": "pending"
+          "status": "pending",
+          "assignedTo": "cd675e08-f33e-4240-a7aa-a7ef06edffb5"
         },
         {
           "id": "t12",
           "title": "Collect sales data",
-          "status": "completed"
+          "status": "completed",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
     },
@@ -163,12 +175,14 @@
         {
           "id": "t13",
           "title": "Gather marketing data",
-          "status": "in-progress"
+          "status": "in-progress",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         },
         {
           "id": "t14",
           "title": "Create visualizations",
-          "status": "pending"
+          "status": "pending",
+          "assignedTo": "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"
         }
       ]
     },
@@ -182,12 +196,14 @@
         {
           "id": "t15",
           "title": "Organize documentation",
-          "status": "completed"
+          "status": "completed",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         },
         {
           "id": "t16",
           "title": "Add search functionality",
-          "status": "in-progress"
+          "status": "in-progress",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
     },
@@ -202,12 +218,14 @@
         {
           "id": "t17",
           "title": "Set up job posting module",
-          "status": "pending"
+          "status": "pending",
+          "assignedTo": "b00e7453-1f58-403a-b2ad-98418658abac"
         },
         {
           "id": "t18",
           "title": "Integrate interview scheduling",
-          "status": "completed"
+          "status": "completed",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
     },
@@ -222,12 +240,14 @@
         {
           "id": "t19",
           "title": "Add barcode scanning",
-          "status": "in-progress"
+          "status": "in-progress",
+          "assignedTo": "cd675e08-f33e-4240-a7aa-a7ef06edffb5"
         },
         {
           "id": "t20",
           "title": "Setup alert thresholds",
-          "status": "pending"
+          "status": "pending",
+          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
     }
