@@ -12,7 +12,6 @@ const schema = yup.object().shape({
     .required("Email is required"),
   password: yup
     .string()
-    .matches(/^[A-Za-z][A-Za-z0-9@$%]{8,}$/, "Invalid password")
     .required("Password is required"),
 });
 
@@ -37,16 +36,25 @@ const SignIn = () => {
     try {
       const { data: users } = await axios.get("http://localhost:5000/users");
       const user = users.find(
-        (u: { email: string; password: string }) =>
-          u.email === values.email && u.password === values.password
+        (u: { email: string }) =>
+          u.email === values.email
       );
+
       if (!user) {
-        setError("Invalid email or password");
+        setError("Email not found");
         return;
       }
 
+      if(user.password !== values.password){
+        setError("Incorrect password !!");
+        return;
+      }
+
+      setError("");
+
       localStorage.setItem("jobTitle",user.jobTitle);
       localStorage.setItem("name",user.name);
+      localStorage.setItem("userId",user.id);
 
       if (user.role === "manager") {
         navigate("/manager-dashboard");

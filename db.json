@@ -5,7 +5,7 @@
       "name": "Susan",
       "email": "susan@example.com",
       "password": "Susan@12345",
-      "jobTitle": "ai-engineer",
+      "jobTitle": "technical-lead",
       "role": "manager"
     },
     {
@@ -23,8 +23,62 @@
       "password": "Sam@12345",
       "jobTitle": "research-analyst",
       "role": "employee"
+    },
+    {
+      "id": "cd675e08-f33e-4240-a7aa-a7ef06edffb5",
+      "name": "Hannah",
+      "email": "hannah@example.com",
+      "password": "Hannah@45678",
+      "jobTitle": "frontend-developer",
+      "role": "employee"
     }
   ],
-  "projects": [],
+  "projects": [
+    {
+      "id": "p1",
+      "name": "AI Research Dashboard",
+      "members": [
+        "b00e7453-1f58-403a-b2ad-98418658abac",
+        "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
+      ],
+      "tasks": [
+        {
+          "id": "t1",
+          "title": "Collect data",
+          "status": "completed"
+        },
+        {
+          "id": "t2",
+          "title": "Train model",
+          "status": "in-progress"
+        },
+        {
+          "id": "t3",
+          "title": "Write report",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "name": "Business Insights Portal",
+      "members": [
+        "c51f95aa-6357-412c-bf38-631c6f3e3ca7",
+        "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f"
+      ],
+      "tasks": [
+        {
+          "id": "t4",
+          "title": "Gather KPIs",
+          "status": "completed"
+        },
+        {
+          "id": "t5",
+          "title": "Design dashboard",
+          "status": "pending"
+        }
+      ]
+    }
+  ],
   "tasks": []
 }
