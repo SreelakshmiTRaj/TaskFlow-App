@@ -1,5 +1,4 @@
 import {
-  ClipboardPlus,
   BarChart3,
   LogOut,
   ListTodo,
@@ -40,20 +39,6 @@ const Sidebar = () => {
         </div>
 
         <nav className="mt-2 flex flex-col gap-1">
-          <NavLink
-            to="/dashboard/add-task"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
-                isActive
-                  ? "bg-blue-700 text-white"
-                  : "text-blue-100 hover:bg-blue-800 hover:text-white"
-              }`
-            }
-          >
-            <ClipboardPlus size={20} />
-            Add Task
-          </NavLink>
-
           <NavLink
             to="/dashboard/taskboard"
             className={({ isActive }) =>

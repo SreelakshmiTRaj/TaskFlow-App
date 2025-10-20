@@ -1,16 +1,26 @@
 import {
-  ClipboardPlus,
-  Clock,
-  CheckCircle,
   BarChart3,
   LogOut,
-  FolderPlus,
+  ListTodo,
+  User2
 } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const ManagerSidebar = () => {
   const navigate = useNavigate();
+  const [name,setName] = useState<string | null>(null);
+  const [jobTitle,setJobTitle] = useState<string | null>(null);
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("name");
+    const storedJobTitle = localStorage.getItem("jobTitle");
+    setName(storedName);
+    setJobTitle(storedJobTitle);
+  }, []);
+
   const handleLogOut = () => {
+    localStorage.clear();
     navigate("/");
   };
 
@@ -22,9 +32,15 @@ const ManagerSidebar = () => {
           <h1 className="text-2xl font-semibold text-center">Taskflow</h1>
         </div>
 
+        <div className="flex flex-col items-center mt-5 mb-4 border-b border-white/20 pb-4">
+          <User2 size={60} className="color-white bg-gray-500 rounded-full"/>
+          <h2 className="text-lg font-semibold">{name || "User Name"}</h2>
+          <p className="text-sm text-white-200">{jobTitle || "Job Title"}</p>
+        </div>
+
         <nav className="mt-2 flex flex-col gap-1">
           <NavLink
-            to="/dashboard/add-project"
+            to="/dashboard/taskboard"
             className={({ isActive }) =>
               `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
                 isActive
@@ -33,49 +49,8 @@ const ManagerSidebar = () => {
               }`
             }
           >
-            <FolderPlus size={20} />
-            Add Project
-          </NavLink>
-          <NavLink
-            to="/dashboard/add-task"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
-                isActive
-                  ? "bg-blue-700 text-white"
-                  : "text-blue-100 hover:bg-blue-800 hover:text-white"
-              }`
-            }
-          >
-            <ClipboardPlus size={20} />
-            Add Task
-          </NavLink>
-
-          <NavLink
-            to="/dashboard/pending-tasks"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
-                isActive
-                  ? "bg-blue-700 text-white"
-                  : "text-blue-100 hover:bg-blue-800 hover:text-white"
-              }`
-            }
-          >
-            <Clock size={20} />
-            Pending Tasks
-          </NavLink>
-
-          <NavLink
-            to="/dashboard/completed-tasks"
-            className={({ isActive }) =>
-              `flex items-center gap-3 px-6 py-3 text-sm font-medium transition-all duration-300 rounded-r-full cursor-pointer ${
-                isActive
-                  ? "bg-blue-700 text-white"
-                  : "text-blue-100 hover:bg-blue-800 hover:text-white"
-              }`
-            }
-          >
-            <CheckCircle size={20} />
-            Completed Tasks
+            <ListTodo size={20} />
+            Task Board
           </NavLink>
 
           <NavLink

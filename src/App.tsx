@@ -22,7 +22,7 @@ const App = () => {
         <Route path="/dashboard/add-project" element={<AddProject/>}/>
         <Route path="/dashboard/add-task" element={<AddTask/>}/>
         <Route path="/dashboard/taskboard" element={<Taskboard/>}/>
-        <Route path='/projects/:id' element={<ProjectsPage />} />
+        <Route path='/projects/:projectId' element={<ProjectsPage />} />
         <Route path="/dashboard/analytics" element={<Analytics/>}/>
       </Routes>
     </BrowserRouter>

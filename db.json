@@ -39,6 +39,14 @@
       "password": "Harry@7890",
       "jobTitle": "QA Tester",
       "role": "employee"
+    },
+    {
+      "id": "444e27ae-4650-4341-9233-63511d986a3f",
+      "name": "Mark",
+      "email": "mark@example.com",
+      "password": "Mark@12345",
+      "jobTitle": "Cybersecurity Analyst",
+      "role": "employee"
     }
   ],
   "projects": [
@@ -51,22 +59,23 @@
       ],
       "tasks": [
         {
-          "id": "t1",
-          "title": "Collect data",
-          "status": "completed",
-          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
-        },
-        {
           "id": "t2",
           "title": "Train model",
           "status": "in-progress",
           "assignedTo": "b00e7453-1f58-403a-b2ad-98418658abac"
         },
         {
-          "id": "t3",
-          "title": "Write report",
-          "status": "in-progress",
-          "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
+          "id": "t-1760937597268",
+          "title": "Write a report",
+          "status": "pending",
+          "assignedTo": "user-id",
+          "subtasks": [
+            {
+              "id": "s-1760937618010",
+              "title": "Write abstract",
+              "completed": false
+            }
+          ]
         }
       ]
     },
@@ -252,5 +261,19 @@
       ]
     }
   ],
-  "tasks": []
+  "tasks": [
+    {
+      "id": "t-1760937597268",
+      "title": "Write a report",
+      "status": "pending",
+      "assignedTo": "user-id",
+      "subtasks": [
+        {
+          "id": "s-1760937618010",
+          "title": "Write abstract",
+          "completed": false
+        }
+      ]
+    }
+  ]
 }
