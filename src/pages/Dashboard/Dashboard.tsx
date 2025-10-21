@@ -46,7 +46,7 @@ const Dashboard = () => {
 
           <button
             onClick={() => navigate("/dashboard/taskboard")}
-            className="bg-blue-900 text-white px-3 py-1 rounded transition space-around"
+            className="bg-blue-900 text-white px-3 py-1 rounded transition space-around cursor-pointer"
           >
             Jump back to projects <ArrowRight size={20} />
           </button>
