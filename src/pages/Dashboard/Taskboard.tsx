@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Layout/Sidebar";
 import axios from "axios";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowLeft, ArrowRight, Plus } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Task {
   id: string;
@@ -21,28 +21,34 @@ interface Project {
 const Taskboard = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [userRole, setUserRole] = useState<string | null>(null);
   const projectsPerPage = 6;
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const API_URL = "http://localhost:5000/projects";
+
+  const fetchProjects = async () => {
+    const userId = localStorage.getItem("userId");
+    const role = localStorage.getItem("role");
+    setUserRole(role);
+
+    if (!userId) {
+      return;
+    }
+
+    try{
+      const response = await axios.get<Project[]>(API_URL);
+      const userProjects = response.data.filter((proj) => proj.members.includes(userId));
+        setProjects(userProjects);
+    }catch(error){
+      console.log("Error fetching projects: ",error);
+    }
+  };
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      const userId = localStorage.getItem("userId");
-      if (!userId) return;
-
-      try {
-        const res = await axios.get<Project[]>(
-          "http://localhost:5000/projects"
-        );
-        const userProjects = res.data.filter((proj) =>
-          proj.members.includes(userId)
-        );
-        setProjects(userProjects);
-      } catch (error) {
-        console.error("Error fetching projects: ", error);
-      }
-    };
     fetchProjects();
-  }, []);
+  }, [location]);
 
   const countTasks = (tasks: Task[]) => {
     const total = tasks.length;
@@ -50,6 +56,10 @@ const Taskboard = () => {
     const inProgress = tasks.filter((t) => t.status === "in-progress").length;
     const pending = tasks.filter((t) => t.status === "pending").length;
     return { total, completed, inProgress, pending };
+  };
+
+  const handleAddProject = async () => {
+    navigate("/manager-dashboard/add-project");
   };
 
   const indexOfLastProject = currentPage * projectsPerPage;
@@ -73,11 +83,20 @@ const Taskboard = () => {
       <Sidebar />
 
       <div className="flex-1 flex flex-col p-6">
-        <div className="flex-1">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
-            Your Projects
-          </h1>
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl font-bold text-gray-800">Your Projects</h1>
 
+          {userRole === "manager" && (
+            <button
+              onClick={handleAddProject}
+              className="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              <Plus size={18} /> Add Project
+            </button>
+          )}
+        </div>
+
+        <div className="flex-1">
           {projects.length === 0 ? (
             <p className="text-gray-600">No projects assigned yet.</p>
           ) : (
@@ -139,7 +158,7 @@ const Taskboard = () => {
                   : "bg-green-700 text-white hover:bg-green-800"
               }`}
             >
-              <ArrowRight size={20}/>
+              <ArrowRight size={20} />
             </button>
           </div>
         )}

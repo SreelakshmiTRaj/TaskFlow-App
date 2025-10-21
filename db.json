@@ -47,6 +47,14 @@
       "password": "Mark@12345",
       "jobTitle": "Cybersecurity Analyst",
       "role": "employee"
+    },
+    {
+      "id": "142b1bed-bd3f-4885-b067-83d919e300cc",
+      "name": "Helena",
+      "email": "helena@example.com",
+      "password": "Helena@123",
+      "jobTitle": "Team Lead",
+      "role": "manager"
     }
   ],
   "projects": [
@@ -259,6 +267,73 @@
           "assignedTo": "c51f95aa-6357-412c-bf38-631c6f3e3ca7"
         }
       ]
+    },
+    {
+      "id": "p-1760952495222",
+      "name": "Kanban Board",
+      "members": [
+        "444e27ae-4650-4341-9233-63511d986a3f",
+        "cd675e08-f33e-4240-a7aa-a7ef06edffb5"
+      ],
+      "tasks": [
+        {
+          "id": "t-1760952502260",
+          "title": "Create  dasboard",
+          "status": "pending",
+          "assignedTo": "user-id",
+          "subtasks": []
+        },
+        {
+          "id": "t-1760952515610",
+          "title": "Create  ",
+          "status": "pending",
+          "assignedTo": "user-id",
+          "subtasks": []
+        }
+      ]
+    },
+    {
+      "id": "p-1760963243695",
+      "name": "Market Trend Analysis",
+      "members": [
+        "142b1bed-bd3f-4885-b067-83d919e300cc",
+        "444e27ae-4650-4341-9233-63511d986a3f",
+        "70b78035-ed81-4489-8f77-ff51088686cc"
+      ],
+      "tasks": [
+        {
+          "id": "t-1761019770262",
+          "title": "Collect market data from APIs",
+          "status": "pending",
+          "assignedTo": "user-id",
+          "subtasks": []
+        },
+        {
+          "id": "t-1761019821616",
+          "title": "Analyze market patterns",
+          "status": "pending",
+          "assignedTo": "user-id",
+          "subtasks": []
+        }
+      ]
+    },
+    {
+      "id": "p-1761019762267",
+      "name": "Customer Feedback Analytics",
+      "members": [
+        "142b1bed-bd3f-4885-b067-83d919e300cc",
+        "444e27ae-4650-4341-9233-63511d986a3f",
+        "70b78035-ed81-4489-8f77-ff51088686cc"
+      ],
+      "tasks": [
+        {
+          "id": "t-1761019967426",
+          "title": "Collct user feedack data",
+          "status": "in-progress",
+          "assignedTo": "user-id",
+          "subtasks": []
+        }
+      ]
     }
   ],
   "tasks": [
@@ -274,6 +349,41 @@
           "completed": false
         }
       ]
+    },
+    {
+      "id": "t-1760952502260",
+      "title": "Create  dasboard",
+      "status": "pending",
+      "assignedTo": "user-id",
+      "subtasks": []
+    },
+    {
+      "id": "t-1760952515610",
+      "title": "Create  ",
+      "status": "pending",
+      "assignedTo": "user-id",
+      "subtasks": []
+    },
+    {
+      "id": "t-1761019770262",
+      "title": "Collect market data from APIs",
+      "status": "pending",
+      "assignedTo": "user-id",
+      "subtasks": []
+    },
+    {
+      "id": "t-1761019821616",
+      "title": "Analyze market patterns",
+      "status": "pending",
+      "assignedTo": "user-id",
+      "subtasks": []
+    },
+    {
+      "id": "t-1761019967426",
+      "title": "Collct user feedack data",
+      "status": "in-progress",
+      "assignedTo": "user-id",
+      "subtasks": []
     }
   ]
 }
