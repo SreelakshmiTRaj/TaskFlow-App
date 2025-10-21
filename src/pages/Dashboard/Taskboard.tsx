@@ -40,10 +40,14 @@ const Taskboard = () => {
 
     try {
       const response = await axios.get<Project[]>(API_URL);
-      const userProjects = response.data.filter((proj) =>
-        proj.members.includes(userId)
-      );
-      setProjects(userProjects);
+      if (role === "admin") {
+        setProjects(response.data);
+      } else {
+        const userProjects = response.data.filter((proj) =>
+          proj.members.includes(userId)
+        );
+        setProjects(userProjects);
+      }
     } catch (error) {
       console.log("Error fetching projects: ", error);
     }
@@ -62,7 +66,7 @@ const Taskboard = () => {
     return { total, completed, inProgress, pending };
   };
 
-  // Adding projects by manager 
+  // Adding projects by manager
   const handleAddProject = async () => {
     navigate("/manager-dashboard/add-project");
   };
@@ -110,7 +114,7 @@ const Taskboard = () => {
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold text-gray-800">Your Projects</h1>
 
-          {userRole === "manager" && (
+          {(userRole === "manager" || userRole === "admin") && (
             <button
               onClick={handleAddProject}
               className="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
@@ -135,7 +139,7 @@ const Taskboard = () => {
                     onClick={() => navigate(`/projects/${project.id}`)}
                     className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer shadow-lg hover:translate-y-0.5 transition-all"
                   >
-                    {userRole === "manager" && (
+                    {(userRole === "manager" || userRole === "admin") && (
                       <button
                         className="top-2 right-2 text-gray-900 hover:text-red-500 cursor-pointer bg-gray-200"
                         onClick={(e) => {

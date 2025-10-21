@@ -1,6 +1,14 @@
 {
   "users": [
     {
+      "id": "1",
+      "name": "Admin",
+      "email": "admin@taskflow.com",
+      "password": "admin123",
+      "role": "admin",
+      "jobTitle": "System Administrator"
+    },
+    {
       "id": "b00e7453-1f58-403a-b2ad-98418658abac",
       "name": "Susan",
       "email": "susan@example.com",
