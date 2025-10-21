@@ -1,6 +1,32 @@
-import Navbar from '../../components/Navbar/Navbar';
+import { useState } from "react";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Contact = () => {
+  const [result, setResult] = useState("");
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setResult("Sending...");
+
+    const formData = new FormData(e.currentTarget);
+    formData.append("access_key", "35546eb0-caf9-4d9f-a36d-26c5f7beea00");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Email sent successfully!");
+      e.currentTarget.reset();
+    } else {
+      console.error("Error:", data);
+      setResult(data.message);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
@@ -10,32 +36,47 @@ const Contact = () => {
           Contact Us
         </h1>
         <p className="text-gray-700 text-lg mb-8 max-w-2xl">
-          Have questions, feedback, or collaboration ideas? We’d love to hear from you.
-          Fill out the form below or reach out directly.
+          Have questions, feedback, or collaboration ideas? We’d love to hear
+          from you. Fill out the form below or reach out directly.
         </p>
 
-        <form className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md border border-gray-200">
+        <form
+          onSubmit={onSubmit}
+          className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md border border-gray-200"
+        >
           <div className="mb-4">
-            <label className="block text-gray-700 text-left mb-2 font-semibold">Name</label>
+            <label className="block text-gray-700 text-left mb-2 font-semibold">
+              Name
+            </label>
             <input
               type="text"
+              name="name"
+              required
               placeholder="Enter your name"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900 outline-none"
             />
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 text-left mb-2 font-semibold">Email</label>
+            <label className="block text-gray-700 text-left mb-2 font-semibold">
+              Email
+            </label>
             <input
               type="email"
+              name="email"
+              required
               placeholder="Enter your email"
               className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-900 outline-none"
             />
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 text-left mb-2 font-semibold">Message</label>
+            <label className="block text-gray-700 text-left mb-2 font-semibold">
+              Message
+            </label>
             <textarea
+              name="message"
+              required
               placeholder="Write your message..."
               className="w-full px-4 py-2 border rounded-lg h-28 resize-none focus:ring-2 focus:ring-blue-900 outline-none"
             ></textarea>
@@ -48,6 +89,10 @@ const Contact = () => {
             Send Message
           </button>
         </form>
+
+        {result && (
+          <p className="mt-4 text-gray-700 font-medium">{result}</p>
+        )}
       </main>
 
       <footer className="text-center py-4 text-gray-600 text-sm border-t border-gray-200">
