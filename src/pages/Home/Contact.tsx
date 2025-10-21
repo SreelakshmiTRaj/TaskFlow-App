@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 
 const Contact = () => {
   const [result, setResult] = useState("");
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setResult("Sending...");
 
@@ -36,9 +36,10 @@ const Contact = () => {
           Contact Us
         </h1>
         <p className="text-gray-700 text-lg mb-8 max-w-2xl">
-          Have questions, feedback, or collaboration ideas? We’d love to hear
-          from you. Fill out the form below or reach out directly.
+          Have questions or feedback? We’d love to hear
+          from you.
         </p>
+        <p className="text-gray-700 text-lg mb-8 max-w-2xl">Fill out the form below</p>
 
         <form
           onSubmit={onSubmit}
