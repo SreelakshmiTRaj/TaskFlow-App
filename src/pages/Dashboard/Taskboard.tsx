@@ -28,6 +28,7 @@ const Taskboard = () => {
 
   const API_URL = "http://localhost:5000/projects";
 
+  // Fetching data from JSON server
   const fetchProjects = async () => {
     const userId = localStorage.getItem("userId");
     const role = localStorage.getItem("role");
@@ -48,6 +49,7 @@ const Taskboard = () => {
     }
   };
 
+  // Rendering projects
   useEffect(() => {
     fetchProjects();
   }, [location]);
@@ -60,10 +62,12 @@ const Taskboard = () => {
     return { total, completed, inProgress, pending };
   };
 
+  // Adding projects by manager 
   const handleAddProject = async () => {
     navigate("/manager-dashboard/add-project");
   };
 
+  // Deleting projects by manager
   const handleDeleteProject = async (projectId: string) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this project?"
@@ -81,6 +85,7 @@ const Taskboard = () => {
     }
   };
 
+  // Pagination
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = projects.slice(
