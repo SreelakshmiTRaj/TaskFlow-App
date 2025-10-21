@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Layout/Sidebar";
 import axios from "axios";
-import { ArrowLeft, ArrowRight, Plus, Trash2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, Plus, Trash2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface Task {
@@ -112,6 +112,13 @@ const Taskboard = () => {
 
       <div className="flex-1 flex flex-col p-6">
         <div className="flex justify-between items-center mb-4">
+          <ChevronLeft
+            size={30}
+            className="cursor-pointer mr-3 text-gray-600 hover:text-gray-800"
+            onClick={() =>
+              navigate(userRole === "admin" ? "/admin-dashboard" : "/dashboard")
+            }
+          />
           <h1 className="text-2xl font-bold text-gray-800">Your Projects</h1>
 
           {(userRole === "manager" || userRole === "admin") && (
