@@ -25,14 +25,6 @@
       "role": "employee"
     },
     {
-      "id": "dbe9a14a-020a-4c41-8ee1-de96d3e9b69f",
-      "name": "Sam",
-      "email": "sam@example.com",
-      "password": "Sam@12345",
-      "jobTitle": "Research Analyst",
-      "role": "employee"
-    },
-    {
       "id": "cd675e08-f33e-4240-a7aa-a7ef06edffb5",
       "name": "Hannah",
       "email": "hannah@example.com",

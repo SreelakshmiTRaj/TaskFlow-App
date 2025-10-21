@@ -49,9 +49,6 @@ const AdminDashboard = () => {
 
       <div className="flex-1 p-8">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">Admin Dashboard</h1>
-        <p className="text-gray-600 mb-6">
-          Manage all users and projects from here.
-        </p>
 
         <div className="overflow-x-auto bg-white shadow-md rounded-xl">
           <table className="min-w-full border-collapse">
