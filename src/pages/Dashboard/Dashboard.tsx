@@ -4,6 +4,20 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
+interface Task {
+  id: string;
+  title: string;
+  status: "pending" | "in-progress" | "completed";
+  assignedTo: string;
+}
+
+interface Project {
+  id: string;
+  name: string;
+  members: string[];
+  tasks: Task[];
+}
+
 const Dashboard = () => {
   const [projectCount, setProjectCount] = useState(0);
   const [userName, setUserName] = useState("");
@@ -16,9 +30,9 @@ const Dashboard = () => {
 
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/projects");
+        const response = await axios.get<Project[]>("http://localhost:5000/projects");
         const userProjects = response.data.filter((proj) =>
-          proj.members.includes(userId)
+          proj.members.includes(userId || " ")
         );
         setProjectCount(userProjects.length);
       } catch (error) {
