@@ -72,6 +72,7 @@ const ProjectsPage = () => {
     completed: tasks.filter((task) => task.status === "completed"),
   };
 
+  // Adding tasks in pending column
   const addTask = async (status: Task["status"]) => {
     const newTask: Task = {
       id: `t-${Date.now()}`,
@@ -92,6 +93,7 @@ const ProjectsPage = () => {
     }
   };
 
+  // Deleting task in pending column
   const deleteTask = async (taskId: string) => {
     try {
       await axios.delete(`${API_URL}/tasks/${taskId}`);
@@ -106,6 +108,7 @@ const ProjectsPage = () => {
     }
   };
 
+  // Renaming tasks 
   const renameTask = async (taskId: string, newTitle: string) => {
     try {
       await axios.patch(`${API_URL}/tasks/${taskId}`, { title: newTitle });
@@ -122,6 +125,7 @@ const ProjectsPage = () => {
     }
   };
 
+  
   const updateTask = async (updatedTask: Task) => {
     const updatedTasks = tasks.map((t) =>
       t.id === updatedTask.id ? updatedTask : t
@@ -138,6 +142,7 @@ const ProjectsPage = () => {
     }
   };
 
+  // Adding subtask in pending column
   const addSubtask = async (taskId: string) => {
     const task = tasks.find((t) => t.id === taskId);
     if (!task) return;
@@ -153,6 +158,7 @@ const ProjectsPage = () => {
     updateTask(updatedTask);
   };
 
+  // Renaming subtask 
   const renameSubtask = async (
     taskId: string,
     subtaskId: string,
@@ -169,6 +175,7 @@ const ProjectsPage = () => {
     updateTask(updatedTask);
   };
 
+  // Delete subtask
   const deleteSubtask = async (taskId: string, subtaskId: string) => {
     const task = tasks.find((t) => t.id === taskId);
     if (!task || !task.subtasks) return;

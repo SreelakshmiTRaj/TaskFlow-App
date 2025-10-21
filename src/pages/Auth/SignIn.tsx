@@ -57,7 +57,10 @@ const SignIn = () => {
       localStorage.setItem("userId",user.id);
       localStorage.setItem("role",user.role);
 
-      if (user.role === "manager") {
+      if(user.role === "admin"){
+        navigate("/admin-dashboard");
+      }
+      else if (user.role === "manager") {
         navigate("/manager-dashboard");
       } else {
         navigate("/dashboard");

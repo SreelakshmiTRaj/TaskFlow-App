@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import ManagerSidebar from "../../components/Layout/ManagerSidebar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const AddProject = () => {
     setMembers(members.filter((m) => m !== name));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     if (!projectName.trim()) {

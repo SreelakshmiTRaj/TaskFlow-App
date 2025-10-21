@@ -11,6 +11,7 @@ import Taskboard from "./pages/Dashboard/Taskboard";
 import ProjectsPage from "./pages/Dashboard/ProjectsPage";
 import About from "./pages/Home/About";
 import Contact from "./pages/Home/Contact";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 const App = () => {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/manager-dashboard" element={<ManagerDashboard/>}/>

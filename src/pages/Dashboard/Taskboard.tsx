@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Layout/Sidebar";
 import axios from "axios";
-import { ArrowLeft, ArrowRight, Plus, Trash2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronLeft, Plus, Trash2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface Task {
@@ -28,6 +28,7 @@ const Taskboard = () => {
 
   const API_URL = "http://localhost:5000/projects";
 
+  // Fetching data from JSON server
   const fetchProjects = async () => {
     const userId = localStorage.getItem("userId");
     const role = localStorage.getItem("role");
@@ -39,15 +40,20 @@ const Taskboard = () => {
 
     try {
       const response = await axios.get<Project[]>(API_URL);
-      const userProjects = response.data.filter((proj) =>
-        proj.members.includes(userId)
-      );
-      setProjects(userProjects);
+      if (role === "admin") {
+        setProjects(response.data);
+      } else {
+        const userProjects = response.data.filter((proj) =>
+          proj.members.includes(userId)
+        );
+        setProjects(userProjects);
+      }
     } catch (error) {
       console.log("Error fetching projects: ", error);
     }
   };
 
+  // Rendering projects
   useEffect(() => {
     fetchProjects();
   }, [location]);
@@ -60,10 +66,12 @@ const Taskboard = () => {
     return { total, completed, inProgress, pending };
   };
 
+  // Adding projects by manager
   const handleAddProject = async () => {
     navigate("/manager-dashboard/add-project");
   };
 
+  // Deleting projects by manager
   const handleDeleteProject = async (projectId: string) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this project?"
@@ -81,6 +89,7 @@ const Taskboard = () => {
     }
   };
 
+  // Pagination
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const currentProjects = projects.slice(
@@ -103,9 +112,16 @@ const Taskboard = () => {
 
       <div className="flex-1 flex flex-col p-6">
         <div className="flex justify-between items-center mb-4">
-          <h1 className="text-2xl font-bold text-gray-800">Your Projects</h1>
+          <ChevronLeft
+            size={30}
+            className="cursor-pointer text-gray-600 hover:text-gray-800"
+            onClick={() =>
+              navigate(userRole === "admin" ? "/admin-dashboard" : "/dashboard")
+            }
+          />
+          {/* <h1 className="text-2xl font-bold text-gray-800">Your Projects</h1> */}
 
-          {userRole === "manager" && (
+          {(userRole === "manager" || userRole === "admin") && (
             <button
               onClick={handleAddProject}
               className="flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
@@ -130,7 +146,7 @@ const Taskboard = () => {
                     onClick={() => navigate(`/projects/${project.id}`)}
                     className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer shadow-lg hover:translate-y-0.5 transition-all"
                   >
-                    {userRole === "manager" && (
+                    {(userRole === "manager" || userRole === "admin") && (
                       <button
                         className="top-2 right-2 text-gray-900 hover:text-red-500 cursor-pointer bg-gray-200"
                         onClick={(e) => {

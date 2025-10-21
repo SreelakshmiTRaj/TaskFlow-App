@@ -1,4 +1,3 @@
-import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 
 const About = () => {
@@ -21,7 +20,7 @@ const About = () => {
         <div className="mt-10 grid md:grid-cols-3 gap-8 max-w-4xl">
           <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
             <h3 className="text-xl font-semibold text-blue-900 mb-2">
-              💡 Easy Collaboration
+              Easy Collaboration
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
               Connect your team members, assign roles, and track project
@@ -31,7 +30,7 @@ const About = () => {
 
           <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
             <h3 className="text-xl font-semibold text-blue-900 mb-2">
-              📊 Smart Insights
+              Smart Insights
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
               Get real-time analytics and performance insights to make informed
@@ -41,7 +40,7 @@ const About = () => {
 
           <div className="bg-white shadow-md rounded-2xl p-6 border border-gray-200">
             <h3 className="text-xl font-semibold text-blue-900 mb-2">
-              🔒 Secure & Reliable
+              Secure & Reliable
             </h3>
             <p className="text-gray-700 text-sm leading-relaxed">
               Built with modern technologies to ensure your data stays private
