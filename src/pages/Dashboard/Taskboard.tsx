@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Layout/Sidebar";
 import axios from "axios";
-import { ArrowLeft, ArrowRight, Plus } from "lucide-react";
+import { ArrowLeft, ArrowRight, Plus, Trash2 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface Task {
@@ -37,12 +37,14 @@ const Taskboard = () => {
       return;
     }
 
-    try{
+    try {
       const response = await axios.get<Project[]>(API_URL);
-      const userProjects = response.data.filter((proj) => proj.members.includes(userId));
-        setProjects(userProjects);
-    }catch(error){
-      console.log("Error fetching projects: ",error);
+      const userProjects = response.data.filter((proj) =>
+        proj.members.includes(userId)
+      );
+      setProjects(userProjects);
+    } catch (error) {
+      console.log("Error fetching projects: ", error);
     }
   };
 
@@ -60,6 +62,23 @@ const Taskboard = () => {
 
   const handleAddProject = async () => {
     navigate("/manager-dashboard/add-project");
+  };
+
+  const handleDeleteProject = async (projectId: string) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this project?"
+    );
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    try {
+      await axios.delete(`${API_URL}/${projectId}`);
+      setProjects((prev) => prev.filter((p) => p.id !== projectId));
+    } catch (error) {
+      console.log("Error deleting project: ", error);
+    }
   };
 
   const indexOfLastProject = currentPage * projectsPerPage;
@@ -111,6 +130,17 @@ const Taskboard = () => {
                     onClick={() => navigate(`/projects/${project.id}`)}
                     className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer shadow-lg hover:translate-y-0.5 transition-all"
                   >
+                    {userRole === "manager" && (
+                      <button
+                        className="top-2 right-2 text-gray-900 hover:text-red-500 cursor-pointer bg-gray-200"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteProject(project.id);
+                        }}
+                      >
+                        <Trash2 size={20} />
+                      </button>
+                    )}
                     <h2 className="text-lg font-semibold text-blue-900 mb-2">
                       {project.name}
                     </h2>

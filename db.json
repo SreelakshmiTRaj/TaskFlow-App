@@ -316,24 +316,6 @@
           "subtasks": []
         }
       ]
-    },
-    {
-      "id": "p-1761019762267",
-      "name": "Customer Feedback Analytics",
-      "members": [
-        "142b1bed-bd3f-4885-b067-83d919e300cc",
-        "444e27ae-4650-4341-9233-63511d986a3f",
-        "70b78035-ed81-4489-8f77-ff51088686cc"
-      ],
-      "tasks": [
-        {
-          "id": "t-1761019967426",
-          "title": "Collct user feedack data",
-          "status": "in-progress",
-          "assignedTo": "user-id",
-          "subtasks": []
-        }
-      ]
     }
   ],
   "tasks": [
