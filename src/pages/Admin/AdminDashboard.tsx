@@ -27,7 +27,9 @@ const AdminDashboard = () => {
 
   const handleDeleteUser = async (userId: string) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this user?");
-    if (!confirmDelete) return;
+    if (!confirmDelete){
+      return;
+    } 
 
     try {
       await axios.delete(`${API_URL}/${userId}`);
@@ -77,7 +79,7 @@ const AdminDashboard = () => {
                   >
                     <td className="p-3">{user.name}</td>
                     <td className="p-3">{user.email}</td>
-                    <td className="p-3 capitalize">{user.role}</td>
+                    <td className="p-3">{user.role}</td>
                     <td className="p-3">{user.jobTitle}</td>
                     <td className="p-3 text-center">
                       {user.role !== "admin" && (

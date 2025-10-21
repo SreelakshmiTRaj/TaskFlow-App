@@ -36,10 +36,11 @@ const Contact = () => {
           Contact Us
         </h1>
         <p className="text-gray-700 text-lg mb-8 max-w-2xl">
-          Have questions or feedback? We’d love to hear
-          from you.
+          Have questions or feedback? We’d love to hear from you.
         </p>
-        <p className="text-gray-700 text-lg mb-8 max-w-2xl">Fill out the form below</p>
+        <p className="text-gray-700 text-lg mb-8 max-w-2xl">
+          Fill out the form below
+        </p>
 
         <form
           onSubmit={onSubmit}
@@ -91,9 +92,7 @@ const Contact = () => {
           </button>
         </form>
 
-        {result && (
-          <p className="mt-4 text-gray-700 font-medium">{result}</p>
-        )}
+        {result && <p className="mt-4 text-gray-700 font-medium">{result}</p>}
       </main>
 
       <footer className="text-center py-4 text-gray-600 text-sm border-t border-gray-200">
