@@ -37,7 +37,7 @@ const SignIn = () => {
   };
   const onSubmit = async (values: formData) => {
     try {
-      const { data: users } = await axios.get("http://localhost:5000/users");
+      const { data: users } = await axios.get("/api/users");
       const user = users.find(
         (u: { email: string }) => u.email === values.email
       );

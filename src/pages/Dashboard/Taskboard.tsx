@@ -26,7 +26,7 @@ const Taskboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const API_URL = "http://localhost:5000/projects";
+  const API_URL = "/api/projects";
 
   // Fetching data from JSON server
   const fetchProjects = async () => {

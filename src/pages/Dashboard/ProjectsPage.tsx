@@ -51,7 +51,7 @@ const ProjectsPage = () => {
 
   const navigate = useNavigate();
 
-  const API_URL = "http://localhost:5000";
+  const API_URL = "/api";
 
   useEffect(() => {
     const fetchProject = async () => {

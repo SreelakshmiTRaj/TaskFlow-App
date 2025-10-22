@@ -69,7 +69,7 @@ const SignUp = () => {
       }
 
       const newUser = { id: uuid(), ...values, jobTitle: selectedJob, role };
-      await axios.post("http://localhost:5000/users", newUser);
+      await axios.post("/api/users", newUser);
       navigate("/login");
     } catch (error) {
       console.log("Error during signup: ", error);

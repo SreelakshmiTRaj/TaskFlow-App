@@ -29,8 +29,8 @@ const AddProject = () => {
   const [members, setMembers] = useState<string[]>([]);
   const navigate = useNavigate();
 
-  const PROJECTS_API = "http://localhost:5000/projects";
-  const USERS_API = "http://localhost:5000/users";
+  const PROJECTS_API = "/api/projects";
+  const USERS_API = "/api/users";
 
   const handleAddMember = () => {
     if (memberName.trim() && !members.includes(memberName.trim())) {

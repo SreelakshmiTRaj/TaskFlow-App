@@ -30,7 +30,7 @@ const Dashboard = () => {
 
     const fetchProjects = async () => {
       try {
-        const response = await axios.get<Project[]>("http://localhost:5000/projects");
+        const response = await axios.get<Project[]>("/api/projects");
         const userProjects = response.data.filter((proj) =>
           proj.members.includes(userId || " ")
         );

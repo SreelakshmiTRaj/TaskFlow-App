@@ -14,7 +14,7 @@ interface User {
 const AdminDashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
 
-  const API_URL = "http://localhost:5000/users";
+  const API_URL = "/api/users";
 
   const fetchUsers = async () => {
     try {
