@@ -36,7 +36,7 @@ const Dashboard = () => {
         );
         setProjectCount(userProjects.length);
       } catch (error) {
-        console.log("Error fetching projects:", error);
+        console.log("Error fetching projects: ", error);
       }
     };
 

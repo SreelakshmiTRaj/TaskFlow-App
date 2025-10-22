@@ -26,10 +26,12 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteUser = async (userId: string) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
-    if (!confirmDelete){
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+    if (!confirmDelete) {
       return;
-    } 
+    }
 
     try {
       await axios.delete(`${API_URL}/${userId}`);
@@ -48,7 +50,9 @@ const AdminDashboard = () => {
       <Sidebar />
 
       <div className="flex-1 p-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Admin Dashboard</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          Admin Dashboard
+        </h1>
 
         <div className="overflow-x-auto bg-white shadow-md rounded-xl">
           <table className="min-w-full border-collapse">
