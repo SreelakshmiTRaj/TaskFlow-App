@@ -4,20 +4,20 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import axios from "axios";
+import { Eye, EyeOff } from "lucide-react";
 
 const schema = yup.object().shape({
   email: yup
     .string()
     .email("Invalid email address")
     .required("Email is required"),
-  password: yup
-    .string()
-    .required("Password is required"),
+  password: yup.string().required("Password is required"),
 });
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [show, setShow] = useState(true);
 
   type formData = {
     email: string;
@@ -32,12 +32,14 @@ const SignIn = () => {
     resolver: yupResolver(schema),
   });
 
+  const handleClick = () => {
+    setShow(!show);
+  };
   const onSubmit = async (values: formData) => {
     try {
       const { data: users } = await axios.get("http://localhost:5000/users");
       const user = users.find(
-        (u: { email: string }) =>
-          u.email === values.email
+        (u: { email: string }) => u.email === values.email
       );
 
       if (!user) {
@@ -45,29 +47,28 @@ const SignIn = () => {
         return;
       }
 
-      if(user.password !== values.password){
+      if (user.password !== values.password) {
         setError("Incorrect password !!");
         return;
       }
 
       setError("");
 
-      localStorage.setItem("isAuthenticated","true");
-      localStorage.setItem("jobTitle",user.jobTitle);
-      localStorage.setItem("name",user.name);
-      localStorage.setItem("userId",user.id);
-      localStorage.setItem("role",user.role);
+      localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("jobTitle", user.jobTitle);
+      localStorage.setItem("name", user.name);
+      localStorage.setItem("userId", user.id);
+      localStorage.setItem("role", user.role);
 
-      if(user.role === "admin"){
+      if (user.role === "admin") {
         navigate("/admin-dashboard");
-      }
-      else if (user.role === "manager") {
+      } else if (user.role === "manager") {
         navigate("/manager-dashboard");
       } else {
         navigate("/dashboard");
       }
     } catch (error) {
-      console.log("Login error: ",error);
+      console.log("Login error: ", error);
     }
   };
 
@@ -103,11 +104,21 @@ const SignIn = () => {
           )}
 
           <label className="mb-1 text-gray-700 font-medium">Password</label>
-          <input
-            type="password"
-            {...register("password")}
-            className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
+          <div className="flex items-center mb-2">
+            <input
+              type={show ? "text" : "password"}
+              {...register("password")}
+              className="mb-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <button
+              className="ml-2 text-gray-600 hover:text-red-400 cursor-pointer"
+              type="button"
+              onClick={handleClick}
+            >
+              {show ? <Eye size={20} /> : <EyeOff size={20} />}
+            </button>
+          </div>
+
           {errors.password && (
             <span className="text-red-500 text-sm mb-2">
               {errors?.password?.message}
