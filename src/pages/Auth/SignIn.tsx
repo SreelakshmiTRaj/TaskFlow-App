@@ -52,6 +52,7 @@ const SignIn = () => {
 
       setError("");
 
+      localStorage.setItem("isAuthenticated","true");
       localStorage.setItem("jobTitle",user.jobTitle);
       localStorage.setItem("name",user.name);
       localStorage.setItem("userId",user.id);

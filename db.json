@@ -55,6 +55,22 @@
       "password": "Helena@123",
       "jobTitle": "Team Lead",
       "role": "manager"
+    },
+    {
+      "id": "ad64de72-2793-4800-b3df-9d01e5acf58c",
+      "name": "Sarath",
+      "email": "sarath@example.com",
+      "password": "Sarath@123",
+      "jobTitle": "Backend Developer",
+      "role": "employee"
+    },
+    {
+      "id": "d1655ed7-5f69-4b88-b291-e6a9546fb1e8",
+      "name": "Sreelakshmi",
+      "email": "sreelakshmi@example.com",
+      "password": "Sreelakshmi@123",
+      "jobTitle": "UI/UX Designer",
+      "role": "employee"
     }
   ],
   "projects": [
@@ -67,23 +83,11 @@
       ],
       "tasks": [
         {
-          "id": "t2",
-          "title": "Train model",
-          "status": "in-progress",
-          "assignedTo": "b00e7453-1f58-403a-b2ad-98418658abac"
-        },
-        {
-          "id": "t-1760937597268",
-          "title": "Write a report",
+          "id": "t-1761044692037",
+          "title": "Untitled Task",
           "status": "pending",
           "assignedTo": "user-id",
-          "subtasks": [
-            {
-              "id": "s-1760937618010",
-              "title": "Write abstract",
-              "completed": false
-            }
-          ]
+          "subtasks": []
         }
       ]
     },
@@ -316,6 +320,23 @@
           "subtasks": []
         }
       ]
+    },
+    {
+      "id": "p-1761042141039",
+      "name": "Customer Feedback Analysis",
+      "members": [
+        "355bc563-0641-473e-9118-6818e32f81e9",
+        "d1655ed7-5f69-4b88-b291-e6a9546fb1e8"
+      ],
+      "tasks": [
+        {
+          "id": "t-1761042353105",
+          "title": "Write a report",
+          "status": "completed",
+          "assignedTo": "user-id",
+          "subtasks": []
+        }
+      ]
     }
   ],
   "tasks": [
@@ -364,6 +385,20 @@
       "id": "t-1761019967426",
       "title": "Collct user feedack data",
       "status": "in-progress",
+      "assignedTo": "user-id",
+      "subtasks": []
+    },
+    {
+      "id": "t-1761042353105",
+      "title": "Write a report",
+      "status": "completed",
+      "assignedTo": "user-id",
+      "subtasks": []
+    },
+    {
+      "id": "t-1761044692037",
+      "title": "Untitled Task",
+      "status": "pending",
       "assignedTo": "user-id",
       "subtasks": []
     }

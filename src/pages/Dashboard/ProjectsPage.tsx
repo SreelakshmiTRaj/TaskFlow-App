@@ -108,7 +108,7 @@ const ProjectsPage = () => {
     }
   };
 
-  // Renaming tasks 
+  // Renaming tasks
   const renameTask = async (taskId: string, newTitle: string) => {
     try {
       await axios.patch(`${API_URL}/tasks/${taskId}`, { title: newTitle });
@@ -125,7 +125,6 @@ const ProjectsPage = () => {
     }
   };
 
-  
   const updateTask = async (updatedTask: Task) => {
     const updatedTasks = tasks.map((t) =>
       t.id === updatedTask.id ? updatedTask : t
@@ -158,7 +157,7 @@ const ProjectsPage = () => {
     updateTask(updatedTask);
   };
 
-  // Renaming subtask 
+  // Renaming subtask
   const renameSubtask = async (
     taskId: string,
     subtaskId: string,
@@ -208,7 +207,14 @@ const ProjectsPage = () => {
     <div className="flex">
       <Sidebar />
       <div className="flex-1 p-6 bg-gray-50 min-h-screen">
-        <h1 className="text-2xl font-bold mb-6"><ChevronLeft size={20} onClick={() => navigate('/dashboard/taskboard')} className="cursor-pointer bg-gray-300 mb-5"/>{project?.name}</h1>
+        <h1 className="text-2xl font-bold mb-6">
+          <ChevronLeft
+            size={20}
+            onClick={() => navigate("/dashboard/taskboard")}
+            className="cursor-pointer bg-gray-300 mb-5"
+          />
+          {project?.name}
+        </h1>
 
         <DragDropContext onDragEnd={onDragEnd}>
           <div className="grid grid-cols-3 gap-6">

@@ -12,6 +12,7 @@ import ProjectsPage from "./pages/Dashboard/ProjectsPage";
 import About from "./pages/Home/About";
 import Contact from "./pages/Home/Contact";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 const App = () => {
   return (
     <BrowserRouter>
@@ -19,15 +20,17 @@ const App = () => {
         <Route path='/' element={<Home />}/>
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<SignUp />} />
-        <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/manager-dashboard" element={<ManagerDashboard/>}/>
-        <Route path="/manager-dashboard/add-project" element={<AddProject/>} />
-        <Route path="/dashboard/taskboard" element={<Taskboard/>}/>
-        <Route path='/projects/:projectId' element={<ProjectsPage />} />
-        <Route path="/dashboard/analytics" element={<Analytics/>}/>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          <Route path="/manager-dashboard" element={<ManagerDashboard/>}/>
+          <Route path="/manager-dashboard/add-project" element={<AddProject/>} />
+          <Route path="/dashboard/taskboard" element={<Taskboard/>}/>
+          <Route path='/projects/:projectId' element={<ProjectsPage />} />
+          <Route path="/dashboard/analytics" element={<Analytics/>}/>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
